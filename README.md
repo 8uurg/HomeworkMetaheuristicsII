@@ -1,10 +1,11 @@
 # Homework Exercise for Seminar Automated Scheduling, Lecture 4b, Metaheuristics II
+
 This repository contains the Jupyter notebook and other code required to make the homework exercise.
 
 ## Instructions
 
 ### Binder
-1. Go to ...
+To open the exercises online press this button: [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/8uurg/HomeworkMetaheuristicsII/master)
 
 ### Self Installation
 1. Ensure a recent version of python is installed - if not, the distribution [Anaconda](https://anaconda.org/anaconda/python) is recommended.
@@ -19,4 +20,4 @@ This repository contains the Jupyter notebook and other code required to make th
 4. Your browser should open. Load `HomeworkExercise.ipynb`.
 
 ### Deliverable
-We'll still have to figure this one out at this point.
+Please mail your answers to us. The mail address will be posted on BrightSpace.
