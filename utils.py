@@ -29,9 +29,30 @@ def load_tsp_problem():
     """
     Loads the TSP problem for this assignment.
     
-    Returns (n, dist)
+    Returns (n, dist, opt)
     """
-    raise NotImplementedError
+    
+    n = -1
+    opt = math.inf
+    coord = []
+    with open("instances/berlin52.tsp", 'r') as f:
+        header = True
+        for line in f.readlines():
+            if len(coord) == n:  # Must break before EOF
+                break
+            if header:
+                header = "NODE_COORD_SECTION" not in line 
+                if "DIMENSION" in line:
+                    n = int(line.split()[1])
+                if "OPT" in line:
+                    opt = float(line.split()[1])
+            else:
+                x = float(line.split()[0])
+                y = float(line.split()[1])
+                coord.append((x, y))
+        
+    distances = calculate_distances(coord)
+    return n, distances, opt
     
 def distance(p, q):
     """
@@ -45,14 +66,34 @@ def generate_euclid_tsp_problem(n, lower, upper):
     
     Returns (n, dist)
     """
-    # Create n x n matrix.
-    dist = [[0 for _ in range(n)] for _ in range(n)]
+    
     # Generate n random 2D points.
     points = [(random.uniform(lower, upper), random.uniform(lower, upper)) for _ in range(n)]
     # Update distance matrix.
+    dist = calculate_distances(points)
+    return n, dist
+
+def calculate_distances(points):
+    n = len(points)
+    
+    # Create empty n x n matrix.
+    dist = empty_matrix(n, n)
+    
+    # Calculate distances
     for p in range(n):
         for q in range(p + 1, n):
             d = distance(points[p], points[q])
             dist[p][q] = d
             dist[q][p] = d
-    return n, dist
+    
+    return dist
+
+def empty_matrix(m, n):
+    """
+    Generates an empty m x n matrix (m lines, n columns)
+    
+    Returns:
+        An empty m x n matrix
+    """
+    
+    return [[0 for _ in range(n)] for _ in range(m)]
