@@ -47,8 +47,8 @@ def load_tsp_problem():
                 if "OPT" in line:
                     opt = float(line.split()[1])
             else:
-                x = float(line.split()[0])
-                y = float(line.split()[1])
+                x = float(line.split()[1])
+                y = float(line.split()[2])
                 coord.append((x, y))
         
     distances = calculate_distances(coord)
